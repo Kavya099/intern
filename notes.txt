@@ -1,0 +1,84 @@
+api.js
+/*
+const client = require('./connection.js');
+const bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+
+const queries = require('./queries');
+app.use(bodyParser.json());
+
+app.get('/all', (req, res) => {
+    client.query(queries.getAllUsersQuery, (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).send('Error fetching users');
+        } else {
+            res.send(result.rows);
+        }
+    });
+});
+
+app.post('/insert', (req, res) => {
+    const { id, captain_id, carebuddy_id, is_active, created_at, updated_at } = req.body;
+
+    if (!id || !captain_id || !carebuddy_id || is_active === undefined || !created_at || !updated_at) {
+        return res.status(400).send('All fields are required');
+    }
+
+    const values = [id, captain_id, carebuddy_id, is_active, created_at, updated_at];
+
+    client.query(queries.insertUserQuery, values, (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            res.status(500).send('Error inserting user');
+        } else {
+            res.status(201).send('User inserted successfully');
+        }
+    });
+});
+
+
+app.put('/update', (req, res) => {
+  const { id, captain_id, carebuddy_id, is_active, created_at, updated_at } = req.body;
+
+  // Check if required fields are provided
+  if (!id || !captain_id || !carebuddy_id || is_active === undefined || !created_at || !updated_at) {
+      return res.status(400).send('All fields are required');
+  }
+
+  const values = [captain_id, carebuddy_id, is_active, created_at, updated_at, id];
+
+  client.query(queries.updateUserQuery, values, (err, result) => {
+      if (err) {
+          console.error('Error executing query:', err);
+          res.status(500).send('Error updating user');
+      } else {
+          res.status(200).send('User updated successfully');
+      }
+  });
+});
+
+app.listen(5000, () => {
+    console.log("Server is now listening at port 5000");
+});
+
+
+app.delete('/delete', (req, res) => {
+  const { id } = req.body;
+  client.query(queries.deleteUserQuery, [id], (err, result) => {
+      if (err) {
+          console.error('Error executing query:', err);
+          res.status(500).send('Error deleting user');
+      } else {
+          res.send('User deleted successfully');
+      }
+  });
+});
+
+module.exports = app;
+*/
+
+
+
+

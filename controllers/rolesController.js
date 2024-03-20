@@ -3,7 +3,7 @@ const queries = require('../queries');
 
 // Get all users
 const getAllUsers = (req, res) => {
-    client.query(queries.getAllUsersQuery, (err, result) => {
+    client.query(queries.getAllrolesQuery, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error fetching users');
@@ -15,16 +15,16 @@ const getAllUsers = (req, res) => {
 
 // Insert a new user
 const insertUser = (req, res) => {
-    const { id, captain_id, carebuddy_id, is_active, created_at, updated_at } = req.body;
+    const { id, name, position, created_at, updated_at } = req.body;
 
     // Check if required fields are provided
-    if (!id || !captain_id || !carebuddy_id || is_active === undefined || !created_at || !updated_at) {
+    if (!id || !name || !position || !created_at || !updated_at) {
         return res.status(400).send('All fields are required');
     }
 
-    const values = [id, captain_id, carebuddy_id, is_active, created_at, updated_at];
+    const values = [id, name, position, created_at, updated_at];
 
-    client.query(queries.insertUserQuery, values, (err, result) => {
+    client.query(queries.insertrolesQuery, values, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error inserting user');
@@ -36,16 +36,16 @@ const insertUser = (req, res) => {
 
 // Update a user
 const updateUser = (req, res) => {
-    const { id, captain_id, carebuddy_id, is_active, created_at, updated_at } = req.body;
+    const { id,name, position, created_at, updated_at} = req.body;
 
     // Check if required fields are provided
-    if (!id || !captain_id || !carebuddy_id || is_active === undefined || !created_at || !updated_at) {
+    if (!id || !name || !position || !created_at || !updated_at) {
         return res.status(400).send('All fields are required');
     }
 
-    const values = [captain_id, carebuddy_id, is_active, created_at, updated_at, id]; //check here correct format to queries
+    const values = [name, position, created_at, updated_at,id];
 
-    client.query(queries.updateUserQuery, values, (err, result) => {
+    client.query(queries.updaterolesQuery, values, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error updating user');
@@ -58,7 +58,7 @@ const updateUser = (req, res) => {
 // Delete a user
 const deleteUser = (req, res) => {
     const { id } = req.body;
-    client.query(queries.deleteUserQuery, [id], (err, result) => {
+    client.query(queries.deleterolesQuery, [id], (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error deleting user');
@@ -74,3 +74,5 @@ module.exports = {
     updateUser,
     deleteUser
 };
+
+
