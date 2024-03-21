@@ -3,7 +3,7 @@ const queries = require('../queries');
 
 // Get all users
 const getAllUsers = (req, res) => {
-    client.query(queries.getAllrolesQuery, (err, result) => {
+    client.query(queries.roles.getAllRolesQuery, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error fetching users');
@@ -15,7 +15,7 @@ const getAllUsers = (req, res) => {
 
 // Insert a new user
 const insertUser = (req, res) => {
-    const { id, name, position, created_at, updated_at } = req.body;
+    const {id, name, position, created_at, updated_at} = req.body;
 
     // Check if required fields are provided
     if (!id || !name || !position || !created_at || !updated_at) {
@@ -24,7 +24,7 @@ const insertUser = (req, res) => {
 
     const values = [id, name, position, created_at, updated_at];
 
-    client.query(queries.insertrolesQuery, values, (err, result) => {
+    client.query(queries.roles.insertRolesQuery, values, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error inserting user');
@@ -45,7 +45,7 @@ const updateUser = (req, res) => {
 
     const values = [name, position, created_at, updated_at,id];
 
-    client.query(queries.updaterolesQuery, values, (err, result) => {
+    client.query(queries.roles.updateRolesQuery, values, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error updating user');
@@ -58,7 +58,7 @@ const updateUser = (req, res) => {
 // Delete a user
 const deleteUser = (req, res) => {
     const { id } = req.body;
-    client.query(queries.deleterolesQuery, [id], (err, result) => {
+    client.query(queries.roles.deleteRolesQuery, [id], (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error deleting user');

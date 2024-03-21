@@ -3,7 +3,7 @@ const queries = require('../queries');
 
 // Get all users
 const getAllUsers = (req, res) => {
-    client.query(queries.getAllUsersQuery, (err, result) => {
+    client.query(queries.captainCarebuddy.getAllUsersQuery, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error fetching users');
@@ -24,7 +24,7 @@ const insertUser = (req, res) => {
 
     const values = [id, captain_id, carebuddy_id, is_active, created_at, updated_at];
 
-    client.query(queries.insertUserQuery, values, (err, result) => {
+    client.query(queries.captainCarebuddy.insertUserQuery, values, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error inserting user');
@@ -45,7 +45,7 @@ const updateUser = (req, res) => {
 
     const values = [captain_id, carebuddy_id, is_active, created_at, updated_at, id]; //check here correct format to queries
 
-    client.query(queries.updateUserQuery, values, (err, result) => {
+    client.query(queries.captainCarebuddy.updateUserQuery, values, (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error updating user');
@@ -58,7 +58,7 @@ const updateUser = (req, res) => {
 // Delete a user
 const deleteUser = (req, res) => {
     const { id } = req.body;
-    client.query(queries.deleteUserQuery, [id], (err, result) => {
+    client.query(queries.captainCarebuddy.deleteUserQuery, [id], (err, result) => {
         if (err) {
             console.error('Error executing query:', err);
             res.status(500).send('Error deleting user');
