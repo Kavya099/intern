@@ -38,6 +38,13 @@ const prayojanaqueries = {
     insertRolesQuery: 'INSERT INTO roles (id, name, position, created_at, updated_at) VALUES ($1, $2, $3, $4, $5)',
     updateRolesQuery: 'UPDATE roles SET name = $1, position = $2, created_at = $3, updated_at = $4 WHERE id = $5',
     deleteRolesQuery: 'DELETE from roles where id=$1'
+  },
+  household_plan:{
+    getAllhousehold_planQuery: 'SELECT * FROM household_plan',
+    inserthousehold_planQuery: 'INSERT INTO household_plan(id, plan_id, start_date, end_date, plan_amount, plan_type, payment_type, payment_id, client_id, created_at, updated_at, plan_status, plan_paused_on, plan_activated_on) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)',
+    updatehousehold_planQuery: 'UPDATE household_plan SET payment_type = $1 WHERE id = $2',
+    deletehousehold_planQuery: 'DELETE from household_plan where id=$1'
+
   }
 };
 
